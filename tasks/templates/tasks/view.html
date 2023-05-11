@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ task.title }}
+{% endblock %}
+
+{% block content %}
+      <li>
+        <h3>{{ task.title }}</h3>
+       <small><p>{{ task.description }}</p></small>
+        {% if task.start_or_end_task %}
+        <h5> <p>Completed</p> </h5>
+        {% else %}
+          <h5><p>Not completed</p></h5>
+        {% endif %}
+        <h5><p>Created: {{ task.date_or_time_create }}</p></h5>
+        <h5> <p>Last updated: {{ task.date_or_time_update }}</p></h5>
+        <h5><p>Owner: {{ task.owner }}</p></h5>
+        
+            <form   method="post" action="#"> 
+            {% csrf_token %}
+        
+              <button  type="submit"  class="btn btn-danger">
+              <a href="{% url 'update' task.pk %}">Update </button>
+            </a>
+            </form>
+            
+            <br>
+            <div>
+                
+                <form method="post" action="{% url 'delete' task.pk  %}">
+                {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+                <br>
+      </li>
+{% endblock %}

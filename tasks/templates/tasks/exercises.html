@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Tasks</h1>
+  <ul style="list-style: none; padding: 0; margin: 0;">
+    {% for task in tasks %}
+      <li>Title: {{ task.title }}</li>
+      <li>Description: {{ task.description }}</li>
+      <li>Created: {{ task.date_or_time_create }}</li>
+      <li>Last update: {{ task.date_or_time_update }}</li>
+      <li>Status: {{ task.start_or_end_task }}</li>
+      <li>Owner: {{ task.owner }}</li>
+      <hr style="border: none; border-top: 1px solid black; margin: 1em 0; padding: 0;">
+    {% endfor %}
+  </ul>
+{% endblock %}
